@@ -1,0 +1,34 @@
+\documentclass{scrartcl}
+
+\usepackage{grffile}
+\usepackage{graphicx}
+\usepackage[margin=1cm]{geometry}
+\usepackage{tikz}
+
+% radius of our cutting tool that came with the button machine
+\newcommand\cuttersize{17.7mm}
+
+% diameter of the buttons
+\newcommand\buttonsize{25mm}
+
+\newcommand\columns{4}
+\newcommand\rows{6}
+
+\newcommand\buttons[2][white]{%
+\begin{tikzpicture}
+  \foreach \x in {0, ..., \columns} {
+    \foreach \y in {0, ...,  \rows} {
+      \filldraw[thick, fill=#1] (2.1 * \x * \cuttersize, 2.1 * \y * \cuttersize) circle (\cuttersize);
+      \node[anchor=center] at (2.1 * \x * \cuttersize, 2.1 * \y * \cuttersize) {%
+        \includegraphics[height=\buttonsize, width=\buttonsize, keepaspectratio]{#2}%
+      };
+    }
+  }
+\end{tikzpicture}
+}
+
+
+
+\begin{document}
+\buttons{s4f-logo-schraeg.pdf}%
+\end{document}
